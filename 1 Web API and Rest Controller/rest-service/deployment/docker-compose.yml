@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8.0.28
+    ports:
+      - "3307:3307"
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
+      - MYSQL_DATABASE=restservice
+  rest-service:
+    image: albert/rest-service:v1
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+    depends_on:
+      - db

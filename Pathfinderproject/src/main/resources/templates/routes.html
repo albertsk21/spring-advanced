@@ -1,0 +1,17 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<div class="wrapper">
+    <header th:replace="fragments/commons::header"></header>
+    <section th:each="r : ${routes}" th:object="${r}" class="road">
+        <img th:src="*{pictureUrl}" alt="Route image" />
+        <div>
+            <h2 th:text="*{name}"></h2>
+            <p th:text="*{description}"></p>
+            <a th:href="@{/routes/details/{id}(id = *{id})}" class="btn">Learn More</a>
+        </div>
+    </section>
+</div>
+</body>
+<footer th:replace="fragments/commons::footer"></footer>
+</html>
